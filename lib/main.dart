@@ -37,12 +37,12 @@ class _MyHomePageState extends State<MyHomePage> {
           });
   }
 
-  _addTransaction(String title, double value) {
+  _addTransaction(String title, double value, DateTime date) {
     final newTransaction = Transaction(
-      id: Random().nextDouble.toString(),
+      id: Random().nextDouble.toString() ,
       title: title,
       value: value,
-      date: DateTime.now(),
+      date: date,
     );
 
     setState(() {
@@ -52,29 +52,13 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.of(context).pop();
   }
 
-  final List<Transaction> _transactions = [
-    Transaction(
-        id: 't1',
-        title: 'Novo Tenis 1 ',
-        value: 310.76,
-        date: DateTime.now().subtract(Duration(
-          days: 3
-      ))
-    ),
-    Transaction(
-        id: 't2',
-        title: 'Conta de Luz 1',
-        value: 221.76,
-        date: DateTime.now().subtract(Duration(
-          days: 4))
-    ),
-    Transaction(
-        id: 't3',
-        title: 'Novo Tenis 2',
-        value: 310.76,
-        date: DateTime.now()
-      ),
-  ];
+  _removeTransaction(String id){
+    setState(() {
+      _transactions.removeWhere((tr) => tr.id == id);
+    });
+  }
+
+  final List<Transaction> _transactions = [];
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
@@ -100,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Chart(_recentTransactions),
-            TransactionList(_transactions),
+            TransactionList(_transactions, _removeTransaction()),
           ],
         ),
       ),

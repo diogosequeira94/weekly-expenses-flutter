@@ -53,24 +53,27 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   final List<Transaction> _transactions = [
-//    Transaction(
-//        id: 't1',
-//        title: 'Novo Tenis 1 ',
-//        value: 310.76,
-//        date: DateTime.now()
-//    ),
-//    Transaction(
-//        id: 't2',
-//        title: 'Conta de Luz 1',
-//        value: 221.76,
-//        date: DateTime.now()
-//    ),
-//    Transaction(
-//        id: 't3',
-//        title: 'Novo Tenis 2',
-//        value: 310.76,
-//        date: DateTime.now()
-//    ),
+    Transaction(
+        id: 't1',
+        title: 'Novo Tenis 1 ',
+        value: 310.76,
+        date: DateTime.now().subtract(Duration(
+          days: 3
+      ))
+    ),
+    Transaction(
+        id: 't2',
+        title: 'Conta de Luz 1',
+        value: 221.76,
+        date: DateTime.now().subtract(Duration(
+          days: 4))
+    ),
+    Transaction(
+        id: 't3',
+        title: 'Novo Tenis 2',
+        value: 310.76,
+        date: DateTime.now()
+      ),
   ];
 
   List<Transaction> get _recentTransactions {

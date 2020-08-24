@@ -33,45 +33,30 @@ class TransactionList extends StatelessWidget {
         itemBuilder: (ctx, index){
           final tr = _transactions[index];
           return Card(
-            child: Row(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.symmetric(
-                      horizontal: 15,
-                      vertical: 10
-                  ),
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Theme.of(context).primaryColor,
-                        width: 2.0,
-                      )
-                  ),
-                  padding: EdgeInsets.all(10.0),
-                  child: Text(
-                    '${tr.value.toStringAsFixed(2)} €',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14.0,
-                        color: Theme.of(context).primaryColor
-                    ),
-                  ),
+            elevation: 5,
+            margin: EdgeInsets.symmetric(
+              vertical: 8.0,
+              horizontal: 5.0
+            ) ,
+            child: ListTile(
+              leading: CircleAvatar(
+                radius: 30.0,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: FittedBox(
+                      child: Text('${tr.value} €')),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(tr.title,
-                        style: TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.bold
-                        )),
-                    Text(
-                      DateFormat('d MMM y').format(tr.date),
-                      style: TextStyle(
-                          color: Colors.grey[700]
-                      ),),
-                  ],
-                )
-              ],
+              ),
+              title: Text(
+                tr.title,
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              subtitle: Text(
+                DateFormat('d MMM y').format(tr.date)
+              ),
+              trailing: InkWell(
+                  onTap: (){},
+                  child: Icon(Icons.delete))
             ),
           );
         },

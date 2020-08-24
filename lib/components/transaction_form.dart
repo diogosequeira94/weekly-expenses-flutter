@@ -49,12 +49,30 @@ class _TransactionFormState extends State<TransactionForm> {
                   labelText: 'Value (€)'
               ),
             ),
+            Container(
+              height: 70,
+              child: Row(
+                children: <Widget>[
+                  Text('No date selected'),
+                  FlatButton(
+                    textColor: Theme.of(context).primaryColor,
+                      child: Text('Select date',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      onPressed: (){},
+                  )
+                ],
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                FlatButton(
+                RaisedButton(
                   child: Text('New Transaction'),
-                  textColor: Colors.deepOrangeAccent,
+                  color: Theme.of(context).primaryColor,
+                  textColor: Colors.white,
                   onPressed: _submitForm,
                 ),
               ],

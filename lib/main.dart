@@ -29,6 +29,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  int _transactionId = 0;
+
   _openTransactionFormModal(BuildContext context){
     showModalBottomSheet(
         context: context,
@@ -39,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _addTransaction(String title, double value, DateTime date) {
     final newTransaction = Transaction(
-      id: Random().nextDouble.toString() ,
+      id: _transactionId,
       title: title,
       value: value,
       date: date,
@@ -48,11 +50,13 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _transactions.add(newTransaction);
     });
-    
+
+    print(newTransaction.id);
+    _transactionId++;
     Navigator.of(context).pop();
   }
 
-  _removeTransaction(String id){
+  _removeTransaction(int id){
     setState(() {
       _transactions.removeWhere((tr) => tr.id == id);
     });
@@ -84,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Chart(_recentTransactions),
-            TransactionList(_transactions, _removeTransaction()),
+            TransactionList(_transactions, _removeTransaction),
           ],
         ),
       ),
